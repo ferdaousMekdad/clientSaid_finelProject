@@ -1,0 +1,126 @@
+.cookLogo{
+    margin-top: -50px;
+    width: 300px;
+    height: 150px;
+    margin-bottom: -50px;
+}
+.Auth{
+    background-color: var(--cardColor);
+    padding:    1rem;
+    border-radius: 1rem;
+    gap: 4rem;
+    height: 100vh;
+   display: flex;
+   
+   justify-content: center;
+   align-items: center;
+   position: relative;
+}
+.Auth>div{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.a-Top{
+    height: 10rem;
+    padding-top:50px ;
+    
+    border-radius:1rem ;
+    width: 60vh;
+   
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+}
+.rotate-scale-up:hover {
+	-webkit-animation: rotate-scale-up 0.65s linear both;
+	        animation: rotate-scale-up 0.65s linear both;
+}
+
+
+    @-webkit-keyframes rotate-scale-up {
+        0% {
+            -webkit-transform: scale(1) rotateZ(0);
+            transform: scale(1) rotateZ(0);
+        }
+        50% {
+            -webkit-transform: scale(2) rotateZ(180deg);
+            transform: scale(2) rotateZ(180deg);
+        }
+        100% {
+            -webkit-transform: scale(1) rotateZ(360deg);
+            transform: scale(1) rotateZ(360deg);
+        }
+    }
+    @keyframes rotate-scale-up {
+        0% {
+      -webkit-transform: scale(1) rotateZ(0);
+      transform: scale(1) rotateZ(0);
+    }
+    50% {
+        -webkit-transform: scale(2) rotateZ(180deg);
+        transform: scale(2) rotateZ(180deg);
+    }
+    100% {
+        -webkit-transform: scale(1) rotateZ(360deg);
+        transform: scale(1) rotateZ(360deg);
+    }
+}
+
+
+.webName{
+    margin-top: -60px;
+    font-size: 2rem;
+    color:  rgb(247, 109, 132);
+}
+.infoForm{
+   display: flex;
+   flex-direction: column;
+   justify-content: center;
+   align-items: center;
+   gap:2rem ;
+}
+.infoInput{
+    border: none;
+    outline: none;
+    background-color: var(--inputColor);
+    border-radius: 8px;
+    padding: 20px;
+    flex:1 ;
+
+
+}
+.infoForm>div{
+   display:flex;
+   gap: 1rem;
+   height: 2rem;
+   width: 100%; 
+}
+.infoButton{
+    width: 6rem;
+    height: 2rem;
+    align-self: flex-end;
+
+}
+
+.authForm{
+    
+    background-color: var(--cardColor);
+    border-radius: 1rem;
+    padding: 1rem;
+}
+.authForm>div{
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+}
+
+.a-right{
+width: 60vh;
+
+}
+.signup{
+    width: 80vh;
+ 
+}

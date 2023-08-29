@@ -1,25 +1,48 @@
-import logo from './logo.svg';
+import Home from './pages/Home';
+import {BrowserRouter as Router,Route, Routes, Link,Navigate} from "react-router-dom";
 import './App.css';
+import Profile from './pages/Profile/Profile';
+import Auth from './pages/Auth/Auth';
+import {useSelector} from "react-redux";
+import RecipePost from './components/CreatRecipe/RecipesPost/RecipePost';
+import RecipeModel from './components/CreatRecipe/RecipeModel';
+
 
 function App() {
+ const user=useSelector((state)=>state.authReducer.authData)
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <div className='blur' style={{top:'18%',right:'0'}}></div>
+      <div className='blur' style={{top:'36%',left:'-8rem'}}></div>
+
+     <Router>
+      <div>
+        <ul>
+          <li><Link to={'/auth'}>Auth</Link></li>
+          <li><Link to={'/home'}>Houme</Link></li>
+          <li><Link to={'/profile'}>profile</Link></li>
+          <li><Link to={'/recipe'}>RecipePost </Link></li>
+          <li><Link to={"/recipeModel"}>RecipeModel</Link></li>
+        </ul>
+      </div>
+      <Routes>
+        <Route exact path="/" element={user ?<Navigate to="home"/>:<Navigate to ="auth"/>}/>
+        <Route exact path="/home" element={user ?<Home/>:<Navigate to="../auth"/>}/>
+        <Route exact path="/auth" element={user ?<Navigate to="../home"/>:<Auth/>}/>
+        <Route path='/profile/:id' element={user?<Profile/>:<Navigate to="../auth"/>}/>
+        <Route exact path ="/recipe" element={<RecipePost/>}/>
+        <Route exact path ='/recipeModel' element={<RecipeModel/>}/>
+       
+      </Routes>
+     </Router>
+  
+
+
+   
+   
     </div>
   );
 }
 
 export default App;
+ 
