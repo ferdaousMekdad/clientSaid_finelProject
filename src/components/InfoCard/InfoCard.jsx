@@ -6,6 +6,9 @@ import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import * as UserApi from "../../api/UserRequest.js"
 import {logOut}from "../../actions/AuthAction.js"
+import axios from "axios";
+import n from "../../image/cover.jpeg"
+import {useCookies} from "react-cookie";
 export const Logout =()=>{
     const dispatch=useDispatch();
     const handleLogOut=()=>{
@@ -19,27 +22,53 @@ export const Logout =()=>{
 };
 
 
-const InfoCard=()=>{
+const InfoCard=({data})=>{
     const dispatch=useDispatch();
     const [modalOpened,setModalOpened]=useState(false);
     const params =useParams();
-    const profileUserId=params.id 
-    const [profileUser,setProfileUser]=useState({})
 
+    const profileUserId=params.id 
+    const [profileUser,setProfileUser]=useState([])
+
+    const[cookies,_]=useCookies(["access_token"]);
+    const [formData,setFormData]=useState([]);
     const {user}=useSelector((state)=>state.authReducer.authData) 
    
    useEffect(()=>{
-    const fetchProfileUser=async()=>{
-        if(profileUserId===user._id){
-            setProfileUser(user)
-            console.log(user)
-        }
-        else{
+       {
+           /**
+            const fetchProfileUser=async()=>{
+                if(profileUserId===user._id){
+                    setProfileUser(user)
+                    console.log(user)
+                }
+                else{
+             * 
             const profileUser=await UserApi.GetUser(profileUserId)
             setProfileUser(profileUser)
-         
+             * 
         }
-    }
+        
+       
+      }
+      */
+        }
+
+        const fetchProfileUser=async()=>{
+           
+           
+            const id=user._id;
+            try {
+             const response= await axios.get( `http://localhost:3000/user/${id}`);
+              setFormData(response.data)
+             
+            
+              console.log(response)
+            } catch (error) {
+              console.log(error)
+            }
+  }
+        
     fetchProfileUser();
     //if user change s the useEfuct render
    },[user])
@@ -65,28 +94,69 @@ const InfoCard=()=>{
             />
             
             </div>
+           
+         
+
+            <div >
+      
+          <ul className="cart">
+         
+          <li key={formData._id}>
 
             <div className="info">
                 <span>
                     <b>Age  </b>
 
                 </span>
-                <span> {profileUser.Age}</span>
+                <span>{formData.Age} old</span>
             </div>
+
             <div className="info">
                 <span>
                     <b>Lives </b>
 
                 </span>
-                <span> {profileUser.livesin}</span>
+                <span> {formData.livesin}</span>
             </div>
             <div className="info">
                 <span>
                     <b>Works at </b>
 
                 </span>
-                <span>  {profileUser.worksAt}</span>
+                <span>{formData.worksAt}</span>
             </div>
+            <div className="info">
+                <span>
+                    <b> country</b>
+
+                </span>
+                <span>{formData.country}</span>
+            </div>
+            <div className="info">
+                <span>
+                    <b>firstname </b>
+
+                </span>
+                <span>{formData.firstname}</span>
+            </div>
+      
+     
+
+
+
+          </li>
+
+
+              
+           
+          </ul>
+        </div>
+
+
+
+           
+
+
              
             
            

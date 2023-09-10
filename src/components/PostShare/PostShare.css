@@ -1,6 +1,7 @@
 .PostShare{
     display: flex;
     gap: 1rem;
+    flex-direction:row;
     background-color:var(--cardColor);
     padding: 1rem;
     border-radius: 1rem;
@@ -18,13 +19,26 @@
     gap: 1rem;
 
 }
-.PostShare>div>input{
+.painderection{
+    display: flex;
+    margin-left: 65%;
+    margin-top: -60px;
+}
+.pain{
+    width:'2rem';
+     height:'1.2rem';
+     
+}
+.PostShare>div{
 background-color: var(--inputColor);
 border-radius: 10px;
 padding: 10px;
 font-size: 17px;
 border: none;
-outline: none
+outline: none;
+width: 80%;
+
+
 } 
 .postOptions{
     display: flex;

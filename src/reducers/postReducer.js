@@ -12,7 +12,9 @@ switch(action.type){
       case "UPLOAD_FAIL":
         return { ...state,posts:action.data, uploading: false, error: true };
       // belongs to Posts.js
-        default:
+    
+      
+      default:
         return state;
 }
  

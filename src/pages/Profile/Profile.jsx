@@ -21,6 +21,19 @@ const Profile=()=>{
              </div>
              {posts.filter((post)=>post.userId===user._id)?
               <PostSide/>:"no posts"}
+
+
+       
+           {/**
+             
+         //if i want to just have the user owne posts
+
+             {loading?"fetching post...":
+                        posts.map((post,id)=>{
+                            return   <Post data={post} id={id}/>
+                        })}
+            
+            */}
              
             </div>
                <RightSide/> 

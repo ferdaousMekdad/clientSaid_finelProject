@@ -6,7 +6,7 @@ import Auth from './pages/Auth/Auth';
 import {useSelector} from "react-redux";
 import RecipePost from './components/CreatRecipe/RecipesPost/RecipePost';
 import RecipeModel from './components/CreatRecipe/RecipeModel';
-
+import CoverPage from ".//pages/coverPage/cover";
 
 function App() {
  const user=useSelector((state)=>state.authReducer.authData)
@@ -16,21 +16,13 @@ function App() {
       <div className='blur' style={{top:'36%',left:'-8rem'}}></div>
 
      <Router>
-      <div>
-        <ul>
-          <li><Link to={'/auth'}>Auth</Link></li>
-          <li><Link to={'/home'}>Houme</Link></li>
-          <li><Link to={'/profile'}>profile</Link></li>
-          <li><Link to={'/recipe'}>RecipePost </Link></li>
-          <li><Link to={"/recipeModel"}>RecipeModel</Link></li>
-        </ul>
-      </div>
+    <Link  to={"coverPage"}>cover</Link>
       <Routes>
         <Route exact path="/" element={user ?<Navigate to="home"/>:<Navigate to ="auth"/>}/>
         <Route exact path="/home" element={user ?<Home/>:<Navigate to="../auth"/>}/>
         <Route exact path="/auth" element={user ?<Navigate to="../home"/>:<Auth/>}/>
         <Route path='/profile/:id' element={user?<Profile/>:<Navigate to="../auth"/>}/>
-        <Route exact path ="/recipe" element={<RecipePost/>}/>
+        <Route exact path ="/coverPage" element={<CoverPage/>}/>
         <Route exact path ='/recipeModel' element={<RecipeModel/>}/>
        
       </Routes>

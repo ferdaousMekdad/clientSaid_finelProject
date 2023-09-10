@@ -1,5 +1,6 @@
 
 import React ,{useState} from "react";
+
 import "./RecipeModel.css";
 import axios from "axios";
 import { Modal, useMantineTheme } from "@mantine/core";
@@ -9,14 +10,15 @@ import {useSelector} from "react-redux";
 import {useNavigate} from "react-router-dom";
 
 
-const RecipeModel=()=>{
-  const userID=UseGetUserID();
+const RecipeModel=({modalOpened, setModalOpened,data})=>{
+    const theme = useMantineTheme();
+    const userID=UseGetUserID();
   const user=useSelector((state)=>state.authReducer.authData)
    const navigate=useNavigate();
     const[cookies,_]=useCookies(["access_token"]);
+     
     const [recipe,setRecipe]=useState({
-        username:"",
-        userimage:"",
+      
         name:"",
         description:"",
         ingredients:[],
@@ -42,36 +44,33 @@ const handelSubmit=async(e)=>{
 
         });
         console.log("it don and work");
-        navigate("/home")
+        {/**  navigate("/home")              */}
+      
      } catch (error) {
         console.log("theris err")
      }
+     setModalOpened(false)
 }
     return(
-        <div>
+        <Modal
+        overlayColor={
+            theme.colorScheme === "dark"
+              ? theme.colors.dark[9]
+              : theme.colors.gray[2]
+          }
+          overlayOpacity={0.55}
+          overlayBlur={3}
+          size="55%" 
+          opened={modalOpened}
+          onClose={() => setModalOpened(false)}
+        
+        >
        
-       <div className="infoForm" onSubmit={handleChange}>
+       <div className="infoForm" onSubmit={handelSubmit}>
           <h3>Create Recipe</h3>
          <form >
 
           <div>
-          <input 
-              type="text"
-              id="username"
-              className="inforecipe"
-              name="username"
-              value={recipe.username}
-              placeholder="username" 
-              onChange={handleChange}/>
-               <input 
-              type="text"
-              id="userimage"
-              className="inforecipe"
-              name="userimage"
-              value={recipe.userimage}
-              placeholder="userimage" 
-              onChange={handleChange}/>
-
               <input 
               type="text"
               id="name"
@@ -80,7 +79,9 @@ const handelSubmit=async(e)=>{
               value={recipe.name}
               placeholder="Recipe Name" 
               onChange={handleChange}/>
-  
+             
+
+         
               <input 
               type="text"
               className="inforecipe"
@@ -122,17 +123,13 @@ const handelSubmit=async(e)=>{
   
  </form>
 
-          <div>
-              take pic frome phone 
-              <input type="file" name="profileImg" />
-          </div>
-  
+          
           <button className="button infoButton" onClick={handelSubmit} >Create</button>
   
   
        </div>
   
-      </div>
+      </Modal>
     )
 };
 export default RecipeModel;
